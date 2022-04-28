@@ -1,0 +1,84 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  font-size: 3vh;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Google Sans", Arial;
+  min-height: 100vh;
+}
+
+#output {
+}
+
+.slide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s;
+}
+
+.slide.hide {
+  opacity: 0;
+  transition-delay: 0.5s;
+}
+
+.slide.slide-same-type {
+  transition: opacity 0.5s !important;
+  transition-delay: 10s;
+}
+
+.slide.slide-same-type.hide {
+  opacity: 0 !important;
+  transform: initial !important;
+}
+
+/* BIBLE */
+.slide.slide-bible {
+  transition: opacity 0.5s, transform 1s;
+}
+
+.slide.slide-bible.hide:not(.slide-same-type) {
+  transform: translateY(50%);
+  opacity: 0;
+}
+
+.slide-bible__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+  width: 75%;
+  max-width: 100%;
+  margin: 0 0 2rem 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.125);
+}
+
+.slide-bible__address {
+  flex: 1 0 20%;
+  white-space: nowrap;
+  font-size: 1.4em;
+  margin: 0 2rem 0 1rem;
+}
+
+.slide-bible__verse {
+  flex: 1 1 80%;
+  padding: 0 2rem 0 0;
+}
