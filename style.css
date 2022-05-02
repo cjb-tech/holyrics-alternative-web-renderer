@@ -177,6 +177,10 @@ body {
   transition-delay: 0s !important;
 }
 
+.slide-image.slide-same-type.hide {
+  transition-delay: 0.5s !important;
+}
+
 .slide-image__container {
   width: 100%;
   height: 100%;
