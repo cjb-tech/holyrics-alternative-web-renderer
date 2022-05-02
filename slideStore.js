@@ -16,7 +16,7 @@ const slideStore = (() => {
       slideInfo.type = map.type;
       slideInfo.text = map.text;
       slideInfo.header = map.header;
-      slideInfo.img64 = map.img64; // data:image/jpeg;base64,
+      slideInfo.img64 = (map.img64 || "").split(/['"]\s*/)[0]; // data:image/jpeg;base64,
       slideInfo.img_id = map.img_id;
       
       switch (slideInfo.type) {
@@ -28,20 +28,41 @@ const slideStore = (() => {
             verseAddress = verseAddressElement.innerText.trim();
             verseAddressElement.remove();
           }
-          slideInfo.verse = slideTextElement.innerText.trim();
+          slideInfo.verse = slideTextElement.innerHTML;
           slideInfo.address = el("div", {
             innerHTML: slideInfo.header || verseAddress,
           }).innerText.trim();
+          
+          if (!slideInfo.verse && !slideInfo.address) {
+            slideInfo.type = "EMPTY";
+          }
           break;
+        
         case "MUSIC":
           slideInfo.rows = el("div", { innerHTML: slideInfo.text })
             .qqq("span")
             .map(span => span.innerText.trim())
             .filter(Boolean);
+          
+          if (!slideInfo.rows.length) {
+            slideInfo.type = "EMPTY";
+          }
+          break;
+        
+        case "IMAGE":
+          if (slideInfo.img64 === "equals") {
+            slideInfo.img64 = state.img64;
+          }
+          break;
+        
+        case "TEXT":
+          if (slideInfo.text === "Searching Server...") {
+            slideInfo.type = "EMPTY";
+          }
+          slideInfo.text = slideInfo.text.replace(/\n/g, "<br>\n");
           break;
       }
       
-      // TODO: Тут ще нада зробити парсер текста, щоб з біблії слова він сам парсив в масив рядків
       networkSleepInterval = 0;
     } catch (e) {
       if (networkSleepInterval < networkSleepIntervalMax) {
@@ -64,7 +85,7 @@ const slideStore = (() => {
         dispatch(state);
       }
       
-      await sleep(1000); // TODO decrease
+      await sleep(100);
     }
   };
   

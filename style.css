@@ -8,8 +8,9 @@ html {
 }
 
 body {
+  /* Вставити свій шрифт тут */
+  font-family: Arial, sans-serif;
   overflow: hidden;
-  font-family: "Google Sans", Arial;
   min-height: 100vh;
 }
 
@@ -62,6 +63,7 @@ body {
   justify-content: space-between;
   align-items: center;
   
+  position: relative;
   width: 75%;
   max-width: 100%;
   margin: 0 0 2rem 0;
@@ -69,6 +71,19 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.125);
+}
+
+.slide-bible__container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  filter: blur(4rem);
+  transform: scale(1.2) translateY(4rem);
 }
 
 .slide-bible__address {
@@ -81,4 +96,105 @@ body {
 .slide-bible__verse {
   flex: 1 1 80%;
   padding: 0 2rem 0 0;
+}
+
+/* MUSIC */
+.slide-music {
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.slide-music__container {
+  position: relative;
+}
+
+.slide-music__container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  filter: blur(4rem);
+  transform: scale(1.2) translateY(2rem);
+}
+
+/* TEXT */
+.slide-text {
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.slide-text.slide-same-type {
+  transition: none !important;
+}
+
+.slide-text.slide-same-type.hide {
+  opacity: 0;
+}
+
+.slide-text__container {
+  position: relative;
+}
+
+.slide-text__container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  filter: blur(4rem);
+  transform: scale(1.2) translateY(2rem);
+}
+
+.slide-text__container span {
+  display: block;
+  margin: 0 0 0.25rem 0;
+}
+
+.slide-text__container span:empty:after {
+  content: "";
+  display: block;
+  height: 0.5em;
+}
+
+
+/* IMAGE */
+.slide-image {
+  color: #ffffff;
+  padding: 0;
+  font-size: 1.2em;
+  text-align: center;
+  transition-delay: 0s !important;
+}
+
+.slide-image__container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide-image__container:after {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  z-index: -1;
+  width: calc(100% + 4rem);
+  height: calc(100% + 4rem);
+  background: inherit;
+  background-size: cover;
+  filter: blur(1rem);
 }
