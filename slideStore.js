@@ -59,7 +59,6 @@ const slideStore = (() => {
           if (slideInfo.text === "Searching Server...") {
             slideInfo.type = "EMPTY";
           }
-          slideInfo.text = slideInfo.text.replace(/\n/g, "<br>\n");
           break;
       }
       
