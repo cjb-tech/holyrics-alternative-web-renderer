@@ -79,7 +79,7 @@ const slideStore = (() => {
   const loop = async () => {
     while (true) {
       const newSlideInfo = await fetchSlide();
-      if (JSON.stringify(newSlideInfo) !== JSON.stringify(state)) {
+      if (newSlideInfo && JSON.stringify(newSlideInfo) !== JSON.stringify(state)) {
         state = newSlideInfo;
         dispatch(state);
       }
